@@ -1,0 +1,35 @@
+{
+  "variables": {
+    "my_token": ""
+  },
+  "builders": [
+    {
+      "type": "digitalocean",
+      "ssh_username": "root",
+      "api_token": "{{ user `my_token` }}",
+      "image": "ubuntu-18-04-x64",
+      "region": "nyc1",
+      "size": "s-1vcpu-2gb",
+      "droplet_name": "strapi-oneclick-deploy",
+      "snapshot_name": "strapi-oneclick-deploy"
+    }
+  ],
+  "provisioners": [
+    {
+      "type": "file",
+      "source": "configs/",
+      "destination": "/tmp"
+    },
+    {
+      "type": "shell",
+      "scripts": [
+        "scripts/1-install-depends.sh",
+        "scripts/2-create-structure.sh",
+        "scripts/3-setup-database.sh",
+        "scripts/4-setup-strapi.sh",
+        "scripts/90-cleanup.sh",
+        "scripts/99-img_check.sh"
+      ]
+    }
+  ]
+}
