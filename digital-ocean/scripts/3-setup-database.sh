@@ -1,4 +1,4 @@
-#!/bin/bash
+#!/bin/bash -e
 
 # install PostgreSQL
 echo "Installing PostgreSQL"

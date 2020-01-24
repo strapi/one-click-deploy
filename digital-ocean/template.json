@@ -11,7 +11,7 @@
       "region": "nyc1",
       "size": "s-1vcpu-2gb",
       "droplet_name": "strapi-oneclick-deploy",
-      "snapshot_name": "strapi-oneclick-deploy"
+      "snapshot_name": "strapi-oneclick-deploy-1"
     }
   ],
   "provisioners": [

@@ -1,4 +1,5 @@
-#!/bin/bash
+#!/bin/bash -e
+
 # disable default nginx configs
 echo "Disabling default Nginx config"
 rm /etc/nginx/sites-enabled/default

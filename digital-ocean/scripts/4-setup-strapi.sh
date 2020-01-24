@@ -1,4 +1,4 @@
-#!/bin/bash
+#!/bin/bash -e
 
 # load temp password from database script
 PASS=$(cat /srv/strapi/temp_pgpass)
@@ -21,10 +21,8 @@ cd /srv/strapi/strapi; yarn build > /dev/null
 # move config files
 echo "Moving Strapi config files and scripts"
 mv /tmp/strapi/index.html /srv/strapi/strapi/public/
-mv /tmp/strapi/server.json /srv/strapi/strapi/config/environments/development/
-mv /tmp/strapi/ip-init /srv/strapi
+mv /tmp/strapi/server.json /var/lib/cloud/scripts/per-instance/
 mv /tmp/strapi/set-strapi-ip.sh /srv/strapi
-mv /tmp/strapi/strapi-cron /srv/strapi
 chmod +x /srv/strapi/set-strapi-ip.sh
 
 # ensure the strapi user owns the data dir

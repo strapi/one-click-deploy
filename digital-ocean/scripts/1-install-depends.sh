@@ -1,4 +1,4 @@
-#!/bin/bash
+#!/bin/bash -e
 
 # perform standard ubuntu updates
 echo "Doing updates to system"
