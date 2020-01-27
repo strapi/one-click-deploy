@@ -21,9 +21,9 @@ cd /srv/strapi/strapi; yarn build > /dev/null
 # move config files
 echo "Moving Strapi config files and scripts"
 mv /tmp/strapi/index.html /srv/strapi/strapi/public/
-mv /tmp/strapi/server.json /var/lib/cloud/scripts/per-instance/
-mv /tmp/strapi/set-strapi-ip.sh /srv/strapi
-chmod +x /srv/strapi/set-strapi-ip.sh
+mv /tmp/strapi/server.json /srv/strapi/strapi/config/environments/development/
+mv /tmp/strapi/set-strapi-ip.sh /var/lib/cloud/scripts/per-instance/
+chmod +x /var/lib/cloud/scripts/per-instance/set-strapi-ip.sh
 
 # ensure the strapi user owns the data dir
 echo "Ensuring Strapi owns all needed files and directories"
