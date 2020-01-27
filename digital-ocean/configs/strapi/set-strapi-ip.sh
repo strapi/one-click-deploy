@@ -8,4 +8,5 @@ if [ -f "$SERVER" ]; then
   su - strapi -c "pm2 restart strapi-develop"
   sleep 10
   chown -R strapi:strapi /srv/strapi
+  rm -Rf /var/log/ufw.log
 fi
