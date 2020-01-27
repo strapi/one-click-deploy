@@ -1,6 +1,6 @@
 #!/bin/bash -e
 
-rm -rf /tmp/* /var/tmp/* /srv/strapi/.pm2/logs/*
+rm -rf /tmp/* /var/tmp/* /srv/strapi/.pm2/logs/* /var/log/ufw.log
 history -c
 cat /dev/null > /root/.bash_history
 unset HISTFILE
