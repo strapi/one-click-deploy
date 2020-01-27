@@ -14,3 +14,8 @@ systemctl -q restart nginx
 # create the strapi user
 echo "Creating the Strapi service user"
 adduser --home /srv/strapi --shell /bin/bash --disabled-login --gecos "" --quiet strapi
+
+# move strapi motd script
+echo "Moving Strapi MOTD add-on script"
+mv /tmp/system/99-strapi-motd /etc/update-motd.d/
+chmod +x /etc/update-motd.d/99-strapi-motd
