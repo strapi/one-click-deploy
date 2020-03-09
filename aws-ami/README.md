@@ -1,6 +1,6 @@
 # Packer deployment for AWS EC2 "One-Click" Deployment
 
-This project is for generating AWS AMI Images with a Strapi project behind an Nginx proxy. The main purpose is to generate one-click deployment options in the [Digital Ocean Marketplace](https://marketplace.digitalocean.com/) however anyone can use this to create your own custom images.
+This project is for generating AWS AMI Images with a Strapi project behind an Nginx proxy. The main purpose is to generate one-click deployment options in the [AWS Marketplace](https://aws.amazon.com/marketplace) however anyone can use this to create your own custom images.
 
 ## How to use
 
@@ -20,6 +20,7 @@ The image creation system is using [Packer](https://www.packer.io/) by HashiCorp
 3. Use the following command to create the image: `packer build -var-file=variables.json template.json`
 
 The packer script will do the following:
+
 - Run Ubuntu System updates
 - Add Node v12 LTS and Yarn repos (and install them)
 - Add any required packages for Strapi

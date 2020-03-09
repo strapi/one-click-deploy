@@ -2,7 +2,7 @@
 
 # install PostgreSQL
 echo "Installing PostgreSQL"
-DEBIAN_FRONTEND=noninteractive apt-get install -y -q postgresql postgresql-contrib > /dev/null
+apt-get install -y -q postgresql postgresql-contrib > /dev/null
 
 # generate new database password and dump to a temp file for strapi install
 echo "Generating a random password"

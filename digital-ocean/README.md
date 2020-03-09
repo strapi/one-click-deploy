@@ -20,6 +20,7 @@ The image creation system is using [Packer](https://www.packer.io/) by HashiCorp
 3. Use the following command to create the image: `packer build -var-file=variables.json template.json`
 
 The packer script will do the following:
+
 - Run Ubuntu System updates
 - Add Node v12 LTS and Yarn repos (and install them)
 - Add any required packages for Strapi

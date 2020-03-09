@@ -1,7 +1,7 @@
 #!/bin/bash -e
 
 # Stop generating errors for non-interactive shell
-export DEBIAN_FRONTEND=noninteractive
+echo 'debconf debconf/frontend select Noninteractive' | sudo debconf-set-selections
 
 # perform standard ubuntu updates
 echo "Doing updates to system"

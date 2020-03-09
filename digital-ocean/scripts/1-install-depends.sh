@@ -1,11 +1,14 @@
 #!/bin/bash -e
 
+# Stop generating errors for non-interactive shell
+echo 'debconf debconf/frontend select Noninteractive' | sudo debconf-set-selections
+
 # perform standard ubuntu updates
 echo "Doing updates to system"
-DEBIAN_FRONTEND=noninteractive apt-get update -q > /dev/null
-DEBIAN_FRONTEND=noninteractive apt-get upgrade -y -q > /dev/null
-DEBIAN_FRONTEND=noninteractive apt-get dist-upgrade -y -q > /dev/null
-DEBIAN_FRONTEND=noninteractive apt-get autoremove -y -q > /dev/null
+apt-get update -q > /dev/null
+apt-get upgrade -y -q > /dev/null
+apt-get dist-upgrade -y -q > /dev/null
+apt-get autoremove -y -q > /dev/null
 
 # add 3rd party repos
 echo "Adding Node.js and Yarn repos"
@@ -17,12 +20,12 @@ echo "deb https://dl.yarnpkg.com/debian/ stable main" | sudo tee /etc/apt/source
 
 # install required packages for strapi
 echo "Installing Strapi package depends"
-DEBIAN_FRONTEND=noninteractive apt-get update -q > /dev/null
-DEBIAN_FRONTEND=noninteractive apt-get install -y -q nodejs yarn build-essential libpng-dev node-gyp > /dev/null
+apt-get update -q > /dev/null
+apt-get install -y -q nodejs yarn build-essential libpng-dev node-gyp > /dev/null
 
 # install nginx
 echo "Installing Nginx"
-DEBIAN_FRONTEND=noninteractive apt-get install -y -q nginx > /dev/null
+apt-get install -y -q nginx > /dev/null
 mv /etc/nginx/nginx.conf /etc/nginx/nginx.conf.original
 mv /tmp/nginx/nginx.conf.new /etc/nginx/nginx.conf
 systemctl -q enable nginx

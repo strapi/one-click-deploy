@@ -18,9 +18,9 @@
 				"owners": ["099720109477"],
 				"most_recent": true
 			},
-			"instance_type": "t2.micro",
+			"instance_type": "t2.small",
 			"ssh_username": "ubuntu",
-			"ami_name": "packer-example {{timestamp}}"
+			"ami_name": "strapi-oneclick-{{timestamp}}"
 		}
 	],
 	"provisioners": [
@@ -32,11 +32,13 @@
 		{
 			"type": "shell",
 			"scripts": [
-        "scripts/1-install-depends.sh",
-        "scripts/2-create-structure.sh",
-        "scripts/3-setup-database.sh",
-        "scripts/4-setup-strapi.sh",
-        "scripts/5-setup-ufw.sh"
+				"scripts/1-install-depends.sh",
+				"scripts/2-create-structure.sh",
+				"scripts/3-setup-database.sh",
+				"scripts/4-setup-strapi.sh",
+				"scripts/5-setup-ufw.sh",
+				"scripts/90-cleanup.sh",
+				"scripts/99-img_check.sh"
 			]
 		}
 	]

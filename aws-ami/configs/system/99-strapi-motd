@@ -1,21 +1,21 @@
 #!/bin/sh
 
-myip=$(hostname -I | awk '{print$1}')
+myip=$(curl -s ifconfig.me)
 
 cat <<EOF
-       Welcome to DigitalOcean's One-Click Strapi Droplet!
+       Welcome to AWS's One-Click Strapi Droplet!
    Below are some useful documentation links to get you started
   ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-            Strapi website: https://strapi.io
-            Strapi documentation: https://strapi.io/documentation
-            Your installation: http://$myip
-            Your admin: http://$myip/admin
+    - Strapi website: https://strapi.io
+    - Strapi documentation: https://strapi.io/documentation
+    - Your installation: http://$myip
+    - Your admin: http://$myip/admin
 
     Here are some information about your current installation
   ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
     - Strapi is installed at /srv/strapi/strapi
     - The Strapi process is running under the strapi user
     - UFW firewall is enabled, all ports are BLOCKED except
-      22 (SSH), 80 (HTTP), 443 (HTTPS)
+      22 (SSH), 80 (HTTP), and 443 (HTTPS)
 
 EOF
