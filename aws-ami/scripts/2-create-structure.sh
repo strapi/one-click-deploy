@@ -21,3 +21,7 @@ sudo chown -R strapi:strapi /srv/strapi
 echo "Moving Strapi MOTD add-on script"
 sudo mv /tmp/system/99-strapi-motd /etc/update-motd.d/
 sudo chmod +x /etc/update-motd.d/99-strapi-motd
+
+# move upstart script
+sudo mv /tmp/strapi/setup_strapi.sh /var/lib/cloud/scripts/per-instance/
+sudo chmod +x /var/lib/cloud/scripts/per-instance/setup_strapi.sh
