@@ -23,5 +23,11 @@ sudo mv /tmp/system/99-strapi-motd /etc/update-motd.d/
 sudo chmod +x /etc/update-motd.d/99-strapi-motd
 
 # move upstart script
+echo "Move startup script to cloud-init"
 sudo mv /tmp/strapi/setup_strapi.sh /var/lib/cloud/scripts/per-instance/
 sudo chmod +x /var/lib/cloud/scripts/per-instance/setup_strapi.sh
+
+# move some strapi files to staging area
+echo "Moving some Strapi files to staging"
+sudo mv /tmp/strapi/index.html /srv/strapi/
+sudo mv /tmp/strapi/server.json /srv/strapi/

@@ -30,8 +30,8 @@ cd /srv/strapi; sudo yarn create strapi-app strapi-development \
 --dbforce
 
 # move files and configure proxy
-sudo mv /tmp/strapi/index.html /srv/strapi/strapi-development/public/
-sudo mv /tmp/strapi/server.json /srv/strapi/strapi-development/config/environments/development/
+sudo mv /srv/strapi/index.html /srv/strapi/strapi-development/public/
+sudo mv /srv/strapi/server.json /srv/strapi/strapi-development/config/environments/development/
 su - strapi -c "sed -i s/changeme/$IP/g $SERVER"
 
 # build the adminUI
