@@ -11,7 +11,7 @@
       "region": "nyc1",
       "size": "s-1vcpu-2gb",
       "droplet_name": "strapi-oneclick-deploy",
-      "snapshot_name": "strapi-oneclick-deploy"
+      "snapshot_name": "strapi-oneclick-{{timestamp}}"
     }
   ],
   "provisioners": [
@@ -25,9 +25,7 @@
       "scripts": [
         "scripts/1-install-depends.sh",
         "scripts/2-create-structure.sh",
-        "scripts/3-setup-database.sh",
-        "scripts/4-setup-strapi.sh",
-        "scripts/5-setup-ufw.sh",
+        "scripts/3-setup-ufw.sh",
         "scripts/90-cleanup.sh",
         "scripts/99-img_check.sh"
       ]

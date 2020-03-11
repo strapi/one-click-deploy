@@ -34,3 +34,7 @@ systemctl -q restart nginx
 # add pm2 globally
 echo "Setting up PM2"
 yarn global add pm2 > /dev/null
+
+# install PostgreSQL
+echo "Installing PostgreSQL"
+apt-get install -y -q postgresql postgresql-contrib > /dev/null
