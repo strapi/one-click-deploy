@@ -481,7 +481,7 @@ echo "-------------------------------------------"
 echo -en "\e[1m${PASS} Tests PASSED\e[0m\n"
 echo -en "\e[1m${WARN} WARNINGS\e[0m\n"
 echo -en "\e[1m${FAIL} Tests FAILED\e[0m\n"
-echo -en "-------------------------------------------"
+echo -en "-------------------------------------------\n"
 
 if [[ $STATUS == 0 ]]; then
     echo -en "We did not detect any issues with this image. Please be sure to manually ensure that all software installed on the base system is functional, secure and properly configured (or facilities for configuration on first-boot have been created).\n\n"
