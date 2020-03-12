@@ -1,9 +1,15 @@
 #!/bin/sh
 
-myip=$(curl -s ifconfig.me)
+myip=$(hostname -I | awk '{print$1}')
+strapiHealth=$(curl -IL localhost:1337/_health -o /dev/null -w '%{http_code}\n' -s)
+isInstalling="true"
+
+if [ $strapiHealth = "204" ]; then 
+  isInstalling="false"
+fi
 
 cat <<EOF
-       Welcome to AWS's One-Click Strapi Droplet!
+       Welcome to DigitalOcean's One-Click Strapi Droplet!
    Below are some useful documentation links to get you started
   ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
     - Strapi website: https://strapi.io
@@ -19,3 +25,12 @@ cat <<EOF
       22 (SSH), 80 (HTTP), and 443 (HTTPS)
 
 EOF
+
+if [ $isInstalling = "true" ]; then
+  cat <<EOF
+  ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+    Strapi is still currently being installed, please wait a few
+    more minutes.
+
+EOF
+fi
