@@ -19,7 +19,7 @@ cat <<EOF
 
     Here are some information about your current installation
   ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-    - Strapi is installed at /srv/strapi/strapi
+    - Strapi is installed at /srv/strapi/strapi-development
     - The Strapi process is running under the strapi user
     - UFW firewall is enabled, all ports are BLOCKED except
       22 (SSH), 80 (HTTP), and 443 (HTTPS)
