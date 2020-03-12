@@ -1,6 +1,12 @@
 #!/bin/sh
 
 myip=$(hostname -I | awk '{print$1}')
+strapiHealth=$(curl -IL localhost:1337/_health -o /dev/null -w '%{http_code}\n' -s)
+isInstalling="true"
+
+if [ $strapiHealth = "204" ]; then 
+  isInstalling="false"
+fi
 
 cat <<EOF
        Welcome to DigitalOcean's One-Click Strapi Droplet!
@@ -19,3 +25,12 @@ cat <<EOF
       22 (SSH), 80 (HTTP), and 443 (HTTPS)
 
 EOF
+
+if [ $isInstalling = "true" ]; then
+  cat <<EOF
+  ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+    Strapi is still currently being installed, please wait a few
+    more minutes.
+
+EOF
+fi
