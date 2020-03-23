@@ -35,7 +35,6 @@ cd /srv/strapi; yarn create strapi-app strapi-development \
 
 # move files
 echo "Moving some files for Strapi" >> $LOG
-mv /srv/strapi/index.html /srv/strapi/strapi-development/public/
 mv /srv/strapi/server.json /srv/strapi/strapi-development/config/environments/development/
 sleep 30
 sed -i s/changeme/$IP/g $SERVER
