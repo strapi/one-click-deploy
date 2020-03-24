@@ -9,7 +9,7 @@ if [ $strapiHealth = "204" ]; then
 fi
 
 cat <<EOF
-       Welcome to DigitalOcean's One-Click Strapi Droplet!
+       Welcome to Amazon's One-Click Strapi Droplet!
    Below are some useful documentation links to get you started
   ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
     - Strapi website: https://strapi.io
