@@ -35,7 +35,6 @@ cd /srv/strapi; npx create-strapi-app@latest strapi-development \
 # move files
 echo "Moving some files for Strapi" >> $LOG
 mv /srv/strapi/server.js /srv/strapi/strapi-development/config/
-sleep 30
 echo "NGINX_URL=http://${IP}" > /srv/strapi/strapi-development/.env
 
 # build the adminUI
