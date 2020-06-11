@@ -1,6 +1,5 @@
 #!/bin/bash
 
-SERVER=/srv/strapi/strapi-development/config/environments/development/server.json
 LOG=/srv/strapi/install.log
 
 # fetch public IP for proxy
@@ -24,7 +23,7 @@ su - postgres -c "psql -c \"grant all privileges on database strapi to strapi;\"
 
 # install strapi with PostgreSQL
 echo "Creating Strapi project" >> $LOG
-cd /srv/strapi; yarn create strapi-app@latest strapi-development \
+cd /srv/strapi; npx create-strapi-app@latest strapi-development \
 --dbclient=postgres \
 --dbhost="127.0.0.1" \
 --dbport=5432 \
@@ -35,7 +34,7 @@ cd /srv/strapi; yarn create strapi-app@latest strapi-development \
 
 # move files
 echo "Moving some files for Strapi" >> $LOG
-mv /srv/strapi/server.js /srv/strapi/strapi-development/config/environments/development/
+mv /srv/strapi/server.js /srv/strapi/strapi-development/config/
 sleep 30
 echo "NGINX_URL=http://${IP}" > /srv/strapi/strapi-development/.env
 
