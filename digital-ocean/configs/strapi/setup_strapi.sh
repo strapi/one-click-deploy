@@ -21,9 +21,9 @@ echo "Setting passwords and permissions in PG" >> $LOG
 su - postgres -c "psql -c \"alter user strapi with encrypted password '$PASS';\""
 su - postgres -c "psql -c \"grant all privileges on database strapi to strapi;\""
 
-# install strapi with PostgreSQL
+# install strapi with PostgreSQL using the Strapi UUID prefix
 echo "Creating Strapi project" >> $LOG
-cd /srv/strapi; npx create-strapi-app@latest strapi-development \
+cd /srv/strapi; STRAPI_UUID_PREFIX="DO-" npx create-strapi-app@latest strapi-development \
 --dbclient=postgres \
 --dbhost="127.0.0.1" \
 --dbport=5432 \
