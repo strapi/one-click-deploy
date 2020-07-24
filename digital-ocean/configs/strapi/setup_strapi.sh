@@ -5,8 +5,9 @@ LOG=/srv/strapi/install.log
 # fetch public IP for proxy
 IP=$(curl -s ifconfig.me)
 
-# generate new database password and dump to a temp file for strapi install
+# generate new database password and admin panel JWT secret
 PASS=$(< /dev/urandom tr -dc _A-Z-a-z-0-9 | head -c${1:-32};echo;)
+ADMINSECRET=$(openssl rand 64 | base64)
 
 # create strapi user in pg
 echo "Creating User in PG" >> $LOG
@@ -36,6 +37,7 @@ cd /srv/strapi; STRAPI_UUID_PREFIX="DO-" npx create-strapi-app@latest strapi-dev
 echo "Moving some files for Strapi" >> $LOG
 mv /srv/strapi/server.js /srv/strapi/strapi-development/config/
 echo "NGINX_URL=http://${IP}" > /srv/strapi/strapi-development/.env
+echo "ADMIN_JWT_SECRET=\"${ADMINSECRET}\"" >> /srv/strapi/strapi-development/.env
 
 # build the adminUI
 echo "Building the Strapi admin" >> $LOG
