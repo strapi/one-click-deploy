@@ -1,6 +1,5 @@
 #!/bin/bash
 
-SERVER=/srv/strapi/strapi-development/config/environments/development/server.json
 LOG=/srv/strapi/install.log
 
 # fetch public IP for proxy
@@ -8,6 +7,7 @@ IP=$(curl -s ifconfig.me)
 
 # generate new database password and dump to a temp file for strapi install
 PASS=$(< /dev/urandom tr -dc _A-Z-a-z-0-9 | head -c${1:-32};echo;)
+ADMINSECRET=$(openssl rand 64 | base64)
 
 # create strapi user in pg
 echo "Creating User in PG" >> $LOG
@@ -24,7 +24,7 @@ su - postgres -c "psql -c \"grant all privileges on database strapi to strapi;\"
 
 # install strapi with PostgreSQL
 echo "Creating Strapi project" >> $LOG
-cd /srv/strapi; yarn create strapi-app strapi-development \
+cd /srv/strapi; STRAPI_UUID_PREFIX="AWS-" npx create-strapi-app@latest strapi-development \
 --dbclient=postgres \
 --dbhost="127.0.0.1" \
 --dbport=5432 \
@@ -35,9 +35,9 @@ cd /srv/strapi; yarn create strapi-app strapi-development \
 
 # move files
 echo "Moving some files for Strapi" >> $LOG
-mv /srv/strapi/server.json /srv/strapi/strapi-development/config/environments/development/
-sleep 30
-sed -i s/changeme/$IP/g $SERVER
+mv /srv/strapi/server.js /srv/strapi/strapi-development/config/
+echo "NGINX_URL=http://${IP}" > /srv/strapi/strapi-development/.env
+echo "ADMIN_JWT_SECRET=\"${ADMINSECRET}\"" >> /srv/strapi/strapi-development/.env
 
 # build the adminUI
 echo "Building the Strapi admin" >> $LOG
