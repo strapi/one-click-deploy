@@ -29,4 +29,4 @@ sudo chmod +x /var/lib/cloud/scripts/per-instance/setup_strapi.sh
 
 # move some strapi files to staging area
 echo "Moving some Strapi files to staging"
-sudo mv /tmp/strapi/server.json /srv/strapi/
+mv /tmp/strapi/server.js /srv/strapi/
